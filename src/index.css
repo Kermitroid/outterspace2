@@ -1,0 +1,205 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 2%; /* Darker background */
+    --foreground: 0 0% 98%;
+    
+    --card: 240 8% 5%; /* Darker card */
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 8% 5%; /* Darker popover */
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 330 90% 55%; /* Slightly adjusted primary for dark theme */
+    --primary-foreground: 330 90% 97%;
+    
+    --secondary: 240 5% 12%; /* Darker secondary */
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 5% 12%; /* Darker muted */
+    --muted-foreground: 240 5% 55%; /* Adjusted muted foreground for readability */
+    
+    --accent: 240 5% 12%; /* Darker accent */
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 70% 45%; /* Adjusted destructive for dark theme */
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 5% 15%; /* Darker border */
+    --input: 240 5% 15%; /* Darker input */
+    --ring: 330 90% 55%; /* Ring to match primary */
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.video-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); /* Darker shadow */
+}
+
+.video-thumbnail {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: hsl(var(--secondary)); /* Placeholder bg for empty thumbnail */
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.8); /* Darker duration bg */
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.category-pill {
+  transition: all 0.3s ease;
+}
+
+.category-pill:hover {
+  transform: scale(1.05);
+}
+
+.category-pill.active {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.video-player-container {
+  position: relative;
+  width: 100%;
+  background-color: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)); /* Darker controls gradient */
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-player-container:hover .video-controls {
+  opacity: 1;
+}
+
+.search-bar {
+  transition: width 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 0 2px hsl(var(--primary));
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, #cc6600 100%); /* Adjusted gradient for darker theme */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar {
+  background: rgba(10, 10, 12, 0.8); /* Darker navbar */
+  backdrop-filter: blur(12px); /* Slightly more blur */
+}
+
+.sidebar {
+  background: rgba(15, 15, 18, 0.8); /* Darker sidebar */
+  backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background: rgba(15, 15, 18, 0.65); /* Darker glass card */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Subtler border */
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03); /* Slightly less pulse */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.03) 0%, /* Darker shimmer */
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 255, 255, 0.03) 40%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Ensure prose styles adapt to dark theme */
+.prose {
+  color: hsl(var(--foreground));
+}
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: hsl(var(--primary));
+}
+.prose strong {
+  color: hsl(var(--primary));
+}
+.prose a {
+  color: hsl(var(--primary));
+}
+.prose a:hover {
+  color: hsl(var(--primary)) / 0.8;
+}
+.prose blockquote {
+  border-left-color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
+}
+.prose code {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+.prose hr {
+  border-color: hsl(var(--border));
+}
